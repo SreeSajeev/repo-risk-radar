@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Users, BarChart, Caution } from "lucide-react";
+import { Users, BarChart, TriangleAlert } from "lucide-react";
 import { ChartContainer } from "@/components/ui/chart";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -27,7 +27,7 @@ export default function Dashboard() {
           <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2">
-                <Caution className="w-5 h-5 text-yellow-400" /> Bus Factor Score
+                <TriangleAlert className="w-5 h-5 text-yellow-400" /> Bus Factor Score
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -69,7 +69,7 @@ export default function Dashboard() {
           <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
             <CardHeader className="pb-2">
               <CardTitle className="flex items-center gap-2">
-                <Caution className="w-5 h-5 text-red-400" /> Churn Risk
+                <TriangleAlert className="w-5 h-5 text-red-400" /> Churn Risk
               </CardTitle>
             </CardHeader>
             <CardContent>
