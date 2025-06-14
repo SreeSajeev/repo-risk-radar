@@ -13,7 +13,7 @@ export default function Dashboard() {
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold tracking-tight">busfactor/busfactor-analyzer</span>
+            <span className="text-2xl font-bold tracking-tight text-[#EAEAEA]">busfactor/busfactor-analyzer</span>
             <span className="inline-flex items-center px-2 py-0.5 rounded bg-green-600/10 text-green-400 font-mono text-xs ring-1 ring-green-600/30">
               <BarChart className="w-4 h-4 mr-1" /> Analyzing
             </span>
@@ -24,13 +24,13 @@ export default function Dashboard() {
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Bus Factor Score */}
-          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-[#EAEAEA]">
                 <TriangleAlert className="w-5 h-5 text-yellow-400" /> Bus Factor Score
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-4xl font-bold text-yellow-400 font-mono">3</span>
                 <span className="px-2 py-0.5 rounded bg-red-500/10 text-red-400 font-mono text-xs">High Risk</span>
@@ -38,13 +38,13 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           {/* % Code Top Contributor */}
-          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-[#EAEAEA]">
                 <BarChart className="w-5 h-5 text-blue-400" /> Top Contributor %
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-4xl font-bold text-blue-400 font-mono">78%</span>
                 <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 font-mono text-xs">Ownership</span>
@@ -52,13 +52,13 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           {/* Total Contributors */}
-          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-[#EAEAEA]">
                 <Users className="w-5 h-5 text-[#00FFD1]" /> Contributors
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-4xl font-bold text-[#00FFD1] font-mono">12</span>
                 <span className="px-2 py-0.5 rounded bg-[#00FFD1]/10 text-[#00FFD1] font-mono text-xs">Last 90d</span>
@@ -66,13 +66,13 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           {/* Churn Risk */}
-          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#17171C] border-[#00FFD1]/40 shadow-lg shadow-[#0061FF33] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader className="pb-2">
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-[#EAEAEA]">
                 <TriangleAlert className="w-5 h-5 text-red-400" /> Churn Risk
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               <div className="flex flex-col items-center gap-2">
                 <span className="text-lg font-semibold text-red-400 font-mono">2 contributors dropped</span>
                 <span className="px-2 py-0.5 rounded bg-red-500/10 text-red-400 font-mono text-xs">Action Needed</span>
@@ -84,11 +84,11 @@ export default function Dashboard() {
         {/* Charts Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Contributor Activity Timeline */}
-          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader>
-              <CardTitle>Contributor Activity (6mo)</CardTitle>
+              <CardTitle className="text-[#EAEAEA]">Contributor Activity (6mo)</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               {/* Mini blue bar chart (placeholder) */}
               <div className="flex items-end gap-1 h-28">
                 {[8, 12, 17, 18, 10, 6].map((h, i) => (
@@ -101,11 +101,11 @@ export default function Dashboard() {
             </CardContent>
           </Card>
           {/* Ownership Pie Chart (placeholder) */}
-          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] hover:scale-105 transition-transform duration-300">
+          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
             <CardHeader>
-              <CardTitle>Ownership Share</CardTitle>
+              <CardTitle className="text-[#EAEAEA]">Ownership Share</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               {/* Pie chart mockup */}
               <div className="flex justify-center items-center h-28">
                 <div className="relative w-28 h-28">
@@ -130,8 +130,8 @@ export default function Dashboard() {
 
         {/* Insights Section */}
         <div className="mt-8">
-          <Card className="bg-[#121217] border-[#00FFD1]/10 shadow-inner shadow-[#0061FF22]">
-            <CardContent>
+          <Card className="bg-[#121217] border-[#00FFD1]/10 shadow-inner shadow-[#0061FF22] text-[#EAEAEA]">
+            <CardContent className="text-[#EAEAEA]">
               <span className="text-lg">💡 <span className="font-semibold text-[#00FFD1]">Insight:</span> 2 contributors do 80% of work. <span className="text-yellow-400">Consider knowledge-sharing.</span></span>
             </CardContent>
           </Card>

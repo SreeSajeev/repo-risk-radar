@@ -19,10 +19,10 @@ export default function CompareRepos() {
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-6xl mx-auto pt-32 px-6 pb-12">
-        <h1 className="text-2xl font-semibold mb-6">Compare Repositories</h1>
+        <h1 className="text-2xl font-semibold mb-6 text-[#EAEAEA]">Compare Repositories</h1>
         {/* Input Field */}
-        <Card className="bg-[#181B22] border-[#00FFD1]/20 mb-6 shadow-lg shadow-[#0061FF11]">
-          <CardContent>
+        <Card className="bg-[#181B22] border-[#00FFD1]/20 mb-6 shadow-lg shadow-[#0061FF11] text-[#EAEAEA]">
+          <CardContent className="text-[#EAEAEA]">
             <div className="flex flex-col sm:flex-row gap-3 items-center">
               <input
                 type="text"
@@ -50,7 +50,7 @@ export default function CompareRepos() {
             </thead>
             <tbody>
               {repos.map((r) => (
-                <tr key={r.name} className={`hover:bg-[#21212c] transition-all ${r.risk === "high" ? "bg-red-600/10" : "bg-green-700/5"}`}>
+                <tr key={r.name} className={`hover:bg-[#21212c] transition-all ${r.risk === "high" ? "bg-red-600/10" : "bg-green-700/5"} text-[#EAEAEA]`}>
                   <td className="p-3">{r.name}</td>
                   <td className="p-3"><span className={`inline-block px-2 py-0.5 rounded ${riskColor[r.risk]}`}>{r.bus}</span></td>
                   <td className="p-3">{r.contributors}</td>
@@ -71,8 +71,8 @@ export default function CompareRepos() {
         </div>
         {/* Decision Card */}
         <div className="mt-10 max-w-xl">
-          <Card className="bg-gradient-to-br from-[#17171C] to-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF22] hover:scale-105 transition-transform duration-300">
-            <CardContent>
+          <Card className="bg-gradient-to-br from-[#17171C] to-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF22] hover:scale-105 transition-transform duration-300 text-[#EAEAEA]">
+            <CardContent className="text-[#EAEAEA]">
               <span className="font-semibold text-xl text-green-400">busfactor/otherlib</span> is safer to fork than <span className="text-red-400">busfactor/demo</span> based on bus factor, current activity, and churn risk scores.
             </CardContent>
           </Card>

@@ -18,7 +18,7 @@ export default function ChurnForecast() {
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-4xl mx-auto pt-32 px-6 pb-10 space-y-8">
-        <h1 className="text-2xl font-semibold mb-3">Churn Forecast</h1>
+        <h1 className="text-2xl font-semibold mb-3 text-[#EAEAEA]">Churn Forecast</h1>
         {/* Search Bar */}
         <div>
           <input
@@ -30,11 +30,11 @@ export default function ChurnForecast() {
           />
         </div>
         {/* Forecast Chart */}
-        <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF18]">
+        <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF18] text-[#EAEAEA]">
           <CardHeader>
-            <CardTitle>Churn Decay Prediction</CardTitle>
+            <CardTitle className="text-[#EAEAEA]">Churn Decay Prediction</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="text-[#EAEAEA]">
             {/* Placeholder chart */}
             <div className="flex items-end gap-1 h-24">
               {[18,15,14,10, 8, 5].map((val, i) => (
@@ -44,11 +44,11 @@ export default function ChurnForecast() {
           </CardContent>
         </Card>
         {/* Timeline */}
-        <Card className="bg-[#17171C] border-[#00FFD1]/20 shadow-inner">
+        <Card className="bg-[#17171C] border-[#00FFD1]/20 shadow-inner text-[#EAEAEA]">
           <CardHeader>
-            <CardTitle>Contributor Timeline</CardTitle>
+            <CardTitle className="text-[#EAEAEA]">Contributor Timeline</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="text-[#EAEAEA]">
             <div className="flex flex-col gap-1">
               {filtered.map((c, i) => (
                 <div key={i} className="flex items-center gap-3">
@@ -63,8 +63,8 @@ export default function ChurnForecast() {
           </CardContent>
         </Card>
         {/* Tips Box */}
-        <Card className="bg-blue-500/10 border-blue-400/40 backdrop-blur shadow-md shadow-blue-400/20">
-          <CardContent>
+        <Card className="bg-blue-500/10 border-blue-400/40 backdrop-blur shadow-md shadow-blue-400/20 text-[#EAEAEA]">
+          <CardContent className="text-[#EAEAEA]">
             <div className="text-blue-400 font-bold mb-2">Tip:</div>
             <div className="text-[#EAEAEA] text-sm">Increase PR reviews and distribute code ownership. Encourage mentorship and documentation!</div>
           </CardContent>

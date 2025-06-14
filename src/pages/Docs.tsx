@@ -109,11 +109,11 @@ export default function Docs() {
         </aside>
         {/* Main section */}
         <section className="flex-1">
-          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11]">
+          <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] text-[#EAEAEA]">
             <CardHeader>
-              <CardTitle>{section}</CardTitle>
+              <CardTitle className="text-[#EAEAEA]">{section}</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="text-[#EAEAEA]">
               {content[section].map((block, i) => (
                 <SectionBlock key={i} block={block} />
               ))}
