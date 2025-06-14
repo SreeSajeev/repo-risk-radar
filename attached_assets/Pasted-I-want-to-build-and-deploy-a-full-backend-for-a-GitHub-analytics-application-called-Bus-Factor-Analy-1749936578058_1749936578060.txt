@@ -1,0 +1,239 @@
+I want to build and deploy a full backend for a GitHub analytics application called Bus Factor Analyzer using:
+
+Node.js + Express.js
+
+GitHub REST API (v3)
+
+MongoDB (optional, for caching)
+
+Ready for Render deployment
+
+The frontend is already built using React + Chart.js. Now I need to make the backend functional and fully integrated.
+
+🔁 BACKEND FUNCTIONALITY REQUIRED:
+Build 3 major API endpoints:
+
+1️⃣ /api/bus-factor
+Purpose: Analyze a single GitHub repository and compute the Bus Factor
+Input:
+
+json
+Copy
+Edit
+{
+  "repo": "https://github.com/facebook/react"
+}
+Logic:
+
+Extract owner/repo name from URL
+
+Use GitHub REST API v3 to:
+
+Get commit history (paginated)
+
+Count commits per contributor
+
+Sort contributors by commit count
+
+Calculate Bus Factor: Number of contributors accounting for 70% of total commits
+
+Return contributor names, commit counts, and bus factor
+
+Response Example:
+
+json
+Copy
+Edit
+{
+  "repo": "facebook/react",
+  "totalCommits": 3500,
+  "busFactor": 3,
+  "topContributors": [
+    { "name": "gaearon", "commits": 1200 },
+    { "name": "bvaughn", "commits": 800 },
+    { "name": "sebmarkbage", "commits": 500 }
+  ]
+}
+2️⃣ /api/churn
+Purpose: Predict contributor churn using commit timelines
+Input:
+
+json
+Copy
+Edit
+{
+  "repo": "https://github.com/facebook/react"
+}
+Logic:
+
+Use GitHub API to get commit timestamps by contributor
+
+Group commits by month (YYYY-MM)
+
+Track number of commits per contributor per month
+
+Identify drop-offs in commit frequency
+
+Response Example:
+
+json
+Copy
+Edit
+{
+  "repo": "facebook/react",
+  "churnData": {
+    "gaearon": {
+      "2023-01": 30,
+      "2023-02": 25,
+      "2023-03": 10,
+      "2023-04": 0
+    },
+    "bvaughn": {
+      "2023-01": 10,
+      "2023-02": 5
+    }
+  }
+}
+3️⃣ /api/compare
+Purpose: Compare multiple repositories side by side
+Input:
+
+json
+Copy
+Edit
+{
+  "repos": [
+    "https://github.com/facebook/react",
+    "https://github.com/vuejs/vue"
+  ]
+}
+Logic:
+
+For each repo, repeat bus factor logic
+
+Collect:
+
+Top contributor
+
+Total commits
+
+Bus Factor
+
+Response Example:
+
+json
+Copy
+Edit
+[
+  {
+    "repo": "facebook/react",
+    "busFactor": 3,
+    "topContributor": "gaearon",
+    "totalCommits": 3500
+  },
+  {
+    "repo": "vuejs/vue",
+    "busFactor": 2,
+    "topContributor": "yyx990803",
+    "totalCommits": 2800
+  }
+]
+🗂️ FILE STRUCTURE I NEED:
+bash
+Copy
+Edit
+bus-factor-backend/
+├── index.js                      # Entry point
+├── routes/
+│   └── analyze.js                # Handles all endpoints
+├── utils/
+│   └── githubUtils.js            # GitHub API logic
+├── .env                          # GitHub token
+├── .env.example                  # Sample environment config
+├── package.json                  # Project metadata
+├── README.md
+🔧 TECH STACK & LIBRARIES TO USE:
+Node.js
+
+Express.js
+
+Axios (for GitHub API requests)
+
+dotenv
+
+CORS
+
+(Optional) mongoose + MongoDB for caching results
+
+🔐 ENVIRONMENT VARIABLES:
+.env file should contain:
+
+ini
+Copy
+Edit
+GITHUB_TOKEN=ghp_yourtokenhere
+Use process.env.GITHUB_TOKEN with Authorization: token ... in the headers for GitHub API calls.
+
+🧠 UTIL FUNCTION REQUIREMENTS:
+In utils/githubUtils.js:
+
+fetchCommitData(owner, repo): Pull commits with pagination
+
+calculateBusFactor(contributorMap): Return contributors needed for 70% commits
+
+getContributorChurn(commitData): Return timeline of commits by month
+
+compareRepositories(repoList): Loop through and summarize results
+
+🚀 DEPLOYMENT-READY INSTRUCTIONS:
+Use npm install to install dependencies
+
+Run with npm start
+
+Ready for deployment to Render (use Express and PORT env variable)
+
+Add /health endpoint to return { "status": "OK" } for uptime check
+
+🔄 EXAMPLE REQUESTS TO TEST:
+Bus Factor:
+
+bash
+Copy
+Edit
+curl -X POST http://localhost:3000/api/bus-factor -H "Content-Type: application/json" -d '{"repo": "https://github.com/facebook/react"}'
+Churn:
+
+bash
+Copy
+Edit
+curl -X POST http://localhost:3000/api/churn -H "Content-Type: application/json" -d '{"repo": "https://github.com/facebook/react"}'
+Compare:
+
+bash
+Copy
+Edit
+curl -X POST http://localhost:3000/api/compare -H "Content-Type: application/json" -d '{"repos": ["https://github.com/facebook/react", "https://github.com/vuejs/vue"]}'
+✅ FINISHING TOUCHES:
+Implement logging and error handling for failed GitHub API calls.
+
+Validate input URLs.
+
+Modularize everything for easy scaling.
+
+Please generate the entire backend, including:
+
+index.js
+
+routes/analyze.js
+
+utils/githubUtils.js
+
+.env.example
+
+package.json
+
+Basic README.md
+
+And make it 100% runnable and functional in Replit and Render.
+
+Once this is done, I’ll connect it to my React frontend and deploy both using Render.
