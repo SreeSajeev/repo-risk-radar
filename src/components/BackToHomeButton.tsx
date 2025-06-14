@@ -9,7 +9,7 @@ export function BackToHomeButton() {
       <Link to="/" className="group inline-flex items-center">
         <Button
           variant="ghost"
-          className="px-2 py-1 text-[#00FFD1] hover:bg-[#17171C] hover:text-[#EAEAEA] rounded-md shadow-[0_0_12px_2px_#00FFD1aa] transition-all font-mono gap-1"
+          className="px-2 py-1 bg-gradient-to-r from-[#0061FF] to-[#4C9FFF] text-white hover:from-[#4C9FFF] hover:to-[#0061FF] hover:scale-105 transition-all font-mono gap-1 rounded-md shadow-lg"
         >
           <ArrowLeft className="w-4 h-4 mr-1" />
           <span>Back to Home</span>
