@@ -1,15 +1,16 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, BarChart, TriangleAlert } from "lucide-react";
 import { ChartContainer } from "@/components/ui/chart";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-6xl mx-auto pt-32 px-6 pb-8 space-y-10">
+        <BackToHomeButton />
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-2">

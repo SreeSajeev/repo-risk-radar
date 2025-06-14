@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ArrowDown } from "lucide-react";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 
 const contributors = [
   { name: "Alice", commits: 200, percent: "60%", last: "2d ago", inactive: false },
@@ -15,6 +16,7 @@ export default function RepoInsights() {
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-6xl mx-auto pt-32 px-6 pb-10">
+        <BackToHomeButton />
         {/* Dropdown selector */}
         <div className="mb-8 flex items-center gap-4">
           <label className="text-lg font-semibold text-[#EAEAEA]" htmlFor="repo-select">Repository:</label>

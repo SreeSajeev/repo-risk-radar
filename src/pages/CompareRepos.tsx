@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 
 const repos = [
   { name: "busfactor/busfactor-analyzer", bus: 3, contributors: 12, churn: 2, last: "3d ago", risk: "high", spark: [7,8,6,5,6,8] },
@@ -19,6 +19,7 @@ export default function CompareRepos() {
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-6xl mx-auto pt-32 px-6 pb-12">
+        <BackToHomeButton />
         <h1 className="text-2xl font-semibold mb-6 text-[#EAEAEA]">Compare Repositories</h1>
         {/* Input Field */}
         <Card className="bg-[#181B22] border-[#00FFD1]/20 mb-6 shadow-lg shadow-[#0061FF11] text-[#EAEAEA]">

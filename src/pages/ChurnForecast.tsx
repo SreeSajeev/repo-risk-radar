@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 import { useState } from "react";
 
 const contributors = [
@@ -18,6 +18,7 @@ export default function ChurnForecast() {
     <div className="min-h-screen bg-[#0E0E10] text-[#EAEAEA]">
       <Navbar />
       <main className="max-w-4xl mx-auto pt-32 px-6 pb-10 space-y-8">
+        <BackToHomeButton />
         <h1 className="text-2xl font-semibold mb-3 text-[#EAEAEA]">Churn Forecast</h1>
         {/* Search Bar */}
         <div>

@@ -1,12 +1,15 @@
-
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 
 export default function Login() {
   return (
     <div className="min-h-screen bg-[#0E0E10] flex flex-col justify-between">
       <Navbar />
       <main className="flex-1 flex items-center justify-center">
+        <div className="absolute left-0 top-28 md:top-32 px-6">
+          <BackToHomeButton />
+        </div>
         <div className="bg-[#1A1A1C]/80 border border-[#00FFD1]/20 rounded-xl shadow-2xl shadow-blue-800/10 p-8 md:p-14 glassmorphism backdrop-blur-lg max-w-sm w-full space-y-7">
           <div>
             <h2 className="text-2xl font-semibold mb-1 text-[#EAEAEA]">Log in</h2>

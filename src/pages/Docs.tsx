@@ -1,7 +1,7 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { BackToHomeButton } from "@/components/BackToHomeButton";
 import { useState } from "react";
 
 const nav = [
@@ -109,6 +109,7 @@ export default function Docs() {
         </aside>
         {/* Main section */}
         <section className="flex-1">
+          <BackToHomeButton />
           <Card className="bg-[#181B22] border-[#00FFD1]/20 shadow-lg shadow-[#0061FF11] text-[#EAEAEA]">
             <CardHeader>
               <CardTitle className="text-[#EAEAEA]">{section}</CardTitle>
