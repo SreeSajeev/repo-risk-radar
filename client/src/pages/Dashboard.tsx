@@ -4,6 +4,7 @@ import { ChartContainer } from "@/components/ui/chart";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { BackToHomeButton } from "@/components/BackToHomeButton";
+import { AnalyzeRepoForm } from "@/components/AnalyzeRepoForm";
 
 export default function Dashboard() {
   return (
