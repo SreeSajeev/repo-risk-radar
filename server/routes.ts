@@ -17,13 +17,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Bus Factor Analysis endpoint
   app.post("/api/bus-factor", async (req, res) => {
+    const timeout = setTimeout(() => {
+      res.status(408).json({ error: "Analysis timeout - please try a smaller repository or try again later" });
+    }, 30000); // 30 second timeout for the entire request
+
     try {
       const { repo } = req.body;
       
       if (!repo) {
+        clearTimeout(timeout);
         return res.status(400).json({ error: "Repository URL is required" });
       }
 
+      console.log(`Analyzing repository: ${repo}`);
+      
       const { owner, repo: repoName } = githubAPI.parseRepoURL(repo);
       const fullName = `${owner}/${repoName}`;
       
@@ -32,6 +39,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
       
       if (cachedRepo && cachedRepo.lastAnalyzed > oneDayAgo) {
+        clearTimeout(timeout);
+        console.log(`Returning cached data for ${fullName}`);
         return res.json({
           repo: cachedRepo.fullName,
           totalCommits: cachedRepo.totalCommits,
@@ -42,6 +51,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Perform fresh analysis
+      console.log(`Performing fresh analysis for ${fullName}`);
       const result = await githubAPI.analyzeBusFactor(repo);
       
       // Cache the results
@@ -60,8 +70,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         await storage.createRepository(repositoryData);
       }
       
+      clearTimeout(timeout);
+      console.log(`Analysis completed for ${fullName}`);
       res.json(result);
     } catch (error: any) {
+      clearTimeout(timeout);
       console.error("Bus factor analysis error:", error.message);
       res.status(500).json({ error: error.message });
     }

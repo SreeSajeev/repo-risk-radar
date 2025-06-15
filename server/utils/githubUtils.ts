@@ -67,15 +67,17 @@ class GitHubAPI {
     const commits: GitHubCommit[] = [];
     let page = 1;
     const perPage = 100;
+    const maxPages = 10; // Limit to 1000 commits for faster analysis
     
     try {
-      while (true) {
+      while (page <= maxPages) {
         const response = await axios.get(`${this.baseURL}/repos/${owner}/${repo}/commits`, {
           headers: this.headers,
           params: {
             per_page: perPage,
             page: page
-          }
+          },
+          timeout: 10000 // 10 second timeout per request
         });
 
         if (response.data.length === 0) break;
@@ -86,18 +88,18 @@ class GitHubAPI {
         if (response.data.length < perPage) break;
         
         page++;
-        
-        // Rate limit protection
-        if (page > 50) break; // Limit to ~5000 commits max
       }
       
       return commits;
     } catch (error: any) {
       if (error.response?.status === 404) {
-        throw new Error('Repository not found');
+        throw new Error('Repository not found or private');
       }
       if (error.response?.status === 403) {
         throw new Error('GitHub API rate limit exceeded or access denied');
+      }
+      if (error.code === 'ECONNABORTED') {
+        throw new Error('Request timeout - repository analysis taking too long');
       }
       throw new Error(`GitHub API error: ${error.message}`);
     }
