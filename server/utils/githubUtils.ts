@@ -196,11 +196,41 @@ class GitHubAPI {
   }
 
   /**
+   * Check if repository exists and is accessible
+   */
+  async checkRepository(owner: string, repo: string): Promise<boolean> {
+    try {
+      await axios.get(`${this.baseURL}/repos/${owner}/${repo}`, {
+        headers: this.headers,
+        timeout: 5000
+      });
+      return true;
+    } catch (error: any) {
+      if (error.response?.status === 404) {
+        throw new Error('Repository not found or is private');
+      }
+      if (error.response?.status === 403) {
+        throw new Error('Access denied - check if repository is public or if GitHub token has proper permissions');
+      }
+      throw new Error(`Unable to access repository: ${error.message}`);
+    }
+  }
+
+  /**
    * Analyze single repository for bus factor
    */
   async analyzeBusFactor(repoURL: string) {
     const { owner, repo } = this.parseRepoURL(repoURL);
+    
+    // First check if the repository exists and is accessible
+    await this.checkRepository(owner, repo);
+    
     const commits = await this.fetchCommitData(owner, repo);
+    
+    if (commits.length === 0) {
+      throw new Error('No commits found in repository');
+    }
+    
     const analysis = this.calculateBusFactor(commits);
     
     return {
