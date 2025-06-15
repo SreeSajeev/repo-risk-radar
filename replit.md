@@ -22,10 +22,12 @@ BusFactor is a web application that analyzes repository contributor patterns to 
 - **Production**: esbuild for server bundling
 
 ### Database Architecture
-- **ORM**: Drizzle ORM with PostgreSQL dialect
+- **Database**: PostgreSQL via Neon Database (@neondatabase/serverless)
+- **ORM**: Drizzle ORM with PostgreSQL dialect and full type safety
 - **Schema Management**: Drizzle Kit for migrations
-- **Development Storage**: In-memory storage implementation for rapid development
-- **Production Ready**: Configured for Neon Database (@neondatabase/serverless)
+- **Storage Implementation**: DatabaseStorage class with intelligent caching
+- **Tables**: Users, repositories (with bus factor data), and churn_analysis (temporal data)
+- **Caching Strategy**: 24-hour cache for repository analysis to reduce API calls
 
 ## Key Components
 
@@ -40,10 +42,11 @@ BusFactor is a web application that analyzes repository contributor patterns to 
    - Documentation system
 
 ### Backend Components
-1. **Storage Interface**: Abstracted storage layer supporting both in-memory and database implementations
-2. **User Management**: Basic user schema with authentication-ready structure
-3. **Route Registration**: Express middleware setup with logging and error handling
-4. **Development Server**: Vite integration for hot module replacement
+1. **GitHub Analytics API**: Three main endpoints for bus factor analysis, churn prediction, and repository comparison
+2. **Database Storage**: PostgreSQL integration with intelligent caching and repository data persistence
+3. **GitHub API Integration**: Comprehensive commit data fetching with pagination and rate limiting
+4. **Route Registration**: Express middleware setup with CORS, logging, and error handling
+5. **Development Server**: Vite integration for hot module replacement
 
 ### Shared Components
 1. **Schema Definitions**: Centralized database schemas using Drizzle ORM
@@ -100,8 +103,16 @@ BusFactor is a web application that analyzes repository contributor patterns to 
 
 ## Changelog
 
-Changelog:
-- June 14, 2025. Initial setup
+- June 15, 2025: Added PostgreSQL database integration with intelligent caching
+  - Implemented full GitHub analytics backend with bus factor, churn analysis, and repository comparison APIs
+  - Added DatabaseStorage class replacing in-memory storage
+  - Created repository and churn_analysis tables with proper relations
+  - Implemented 24-hour caching strategy for repository analysis results
+  - Added real-time repository analysis form to frontend Dashboard
+- June 14, 2025: Initial setup and migration from Lovable to Replit
+  - Migrated React frontend with TypeScript and Tailwind CSS
+  - Set up Express.js backend with development workflow
+  - Configured Vite build system and hot module replacement
 
 ## User Preferences
 

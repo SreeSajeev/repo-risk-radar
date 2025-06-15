@@ -44,7 +44,14 @@ export class DatabaseStorage implements IStorage {
   async createRepository(repository: InsertRepository): Promise<Repository> {
     const [repo] = await db
       .insert(repositories)
-      .values(repository)
+      .values({
+        owner: repository.owner,
+        name: repository.name,
+        fullName: repository.fullName,
+        totalCommits: repository.totalCommits,
+        busFactor: repository.busFactor,
+        topContributors: repository.topContributors as any
+      })
       .returning();
     return repo;
   }
@@ -52,7 +59,11 @@ export class DatabaseStorage implements IStorage {
   async updateRepository(fullName: string, updates: Partial<InsertRepository>): Promise<Repository | undefined> {
     const [repo] = await db
       .update(repositories)
-      .set({ ...updates, lastAnalyzed: new Date() })
+      .set({
+        ...updates,
+        topContributors: updates.topContributors as any,
+        lastAnalyzed: new Date()
+      })
       .where(eq(repositories.fullName, fullName))
       .returning();
     return repo || undefined;
@@ -71,7 +82,7 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(churnAnalysis)
       .where(eq(churnAnalysis.repositoryId, repositoryId))
-      .orderBy(churnAnalysis.analysisDate)
+      .orderBy(desc(churnAnalysis.analysisDate))
       .limit(1);
     return analysis || undefined;
   }
