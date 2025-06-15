@@ -12,6 +12,10 @@ export default function Dashboard() {
       <Navbar />
       <main className="max-w-6xl mx-auto pt-32 px-6 pb-8 space-y-10">
         <BackToHomeButton />
+        
+        {/* Real-time Repository Analysis */}
+        <AnalyzeRepoForm />
+        
         {/* Header Row */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-2">

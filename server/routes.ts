@@ -24,7 +24,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: "Repository URL is required" });
       }
 
+      const { owner, repo: repoName } = githubAPI.parseRepoURL(repo);
+      const fullName = `${owner}/${repoName}`;
+      
+      // Check if we have cached data (less than 24 hours old)
+      const cachedRepo = await storage.getRepository(fullName);
+      const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      
+      if (cachedRepo && cachedRepo.lastAnalyzed > oneDayAgo) {
+        return res.json({
+          repo: cachedRepo.fullName,
+          totalCommits: cachedRepo.totalCommits,
+          busFactor: cachedRepo.busFactor,
+          topContributors: cachedRepo.topContributors,
+          cached: true
+        });
+      }
+
+      // Perform fresh analysis
       const result = await githubAPI.analyzeBusFactor(repo);
+      
+      // Cache the results
+      const repositoryData = {
+        owner,
+        name: repoName,
+        fullName,
+        totalCommits: result.totalCommits,
+        busFactor: result.busFactor,
+        topContributors: result.topContributors
+      };
+
+      if (cachedRepo) {
+        await storage.updateRepository(fullName, repositoryData);
+      } else {
+        await storage.createRepository(repositoryData);
+      }
+      
       res.json(result);
     } catch (error: any) {
       console.error("Bus factor analysis error:", error.message);
