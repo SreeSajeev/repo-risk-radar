@@ -33,10 +33,22 @@ class GitHubAnalyticsAPI {
   private baseURL = `${API_BASE_URL}/api`;
 
   async analyzeBusFactor(repoURL: string): Promise<BusFactorResponse> {
-    const response = await axios.post(`${this.baseURL}/bus-factor`, {
-      repo: repoURL
-    });
-    return response.data;
+    console.log('Making request to:', `${this.baseURL}/bus-factor`);
+    console.log('Request payload:', { repo: repoURL });
+    
+    try {
+      const response = await axios.post(`${this.baseURL}/bus-factor`, {
+        repo: repoURL
+      }, {
+        timeout: 30000 // 30 second timeout
+      });
+      console.log('Response received:', response.data);
+      return response.data;
+    } catch (error: any) {
+      console.error('API Error:', error);
+      console.error('Error response:', error.response?.data);
+      throw error;
+    }
   }
 
   async analyzeChurn(repoURL: string): Promise<ChurnResponse> {
